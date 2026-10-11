@@ -1,0 +1,19 @@
+name: PR Title
+
+# PR タイトルが Conventional Commits 形式か検査する（qa-workflows の reusable を SHA 固定で呼ぶ）。
+# 必須チェックにはしない（branch protection に追加しない）。
+# check 名: pr-title / pr-title-check
+# タイトル修正で再検査させるため pull_request に edited を含める。
+
+on:
+  pull_request:
+    types: [opened, edited, synchronize, reopened]
+
+permissions:
+  contents: read
+
+jobs:
+  pr-title:
+    permissions:
+      contents: read
+    uses: flipslidersand-labs/qa-workflows/.github/workflows/pr-title.yml@104cde98394b4574a8366d02f56b963c12204f4e
